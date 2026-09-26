@@ -1,0 +1,26 @@
+import numpy as np
+
+def polyeval(coeffs,x):
+    return np.polyval(coeffs,x)
+
+def polyderivative(coeffs):
+    return np.polyder(coeffs)
+
+def quotient_rule_derivative(g_coeffs: list, h_coeffs: list, x: float) -> float:
+    """
+    Compute the derivative of f(x) = g(x)/h(x) at point x using the quotient rule.
+    
+    Args:
+        g_coeffs: Coefficients of numerator polynomial in descending order
+        h_coeffs: Coefficients of denominator polynomial in descending order
+        x: Point at which to evaluate the derivative
+        
+    Returns:
+        The derivative value f'(x)
+    """
+    g_val=np.polyval(g_coeffs,x)
+    h_val=np.polyval(h_coeffs,x)
+    g_prime_val=np.polyval(np.polyder(g_coeffs),x)
+    h_prime_val=np.polyval(np.polyder(h_coeffs),x)
+
+    return (g_prime_val*h_val-g_val*h_prime_val)/(h_val**2)
